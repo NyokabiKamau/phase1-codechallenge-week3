@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar bg-dark">
+        <div class="container-fluid">
+            <ul class="navbar-nav me-auto d-flex flex-row" id="films">
+                <li class="film nav-item me-2"></li>
+                <a class="navbar-brandtext-light" href="#" id="film-link">FILMS</a>
+            </ul>
+        </div>
+    </nav>
+    <div class="card" style="width: 35rem;">
+        <img src="https://www.gstatic.com/tv/thumb/v22vodart/2157/p2157_v_v8_ab.jpg" class="card-img-top" alt="Film Image">
+        <div class="card-body">
+            <h5 class="card-title" id="title">Film title</h5>
+            <dl class="row">
+                <dt class="col-sm-3" id="runtime">runtime</dt>
+                <dd class="col-sm-9">Length of the movie</dd>
+                <dt class="col-sm-3" id="capacity">capacity</dt>
+                <dd class="col-sm-9">capacity</dd>
+                <dt class="col-sm-3" id="showtime">showtime</dt>
+                <dd class="col-sm-9">showtime</dd>
+                <dt class="col-sm-3" id="tickets_sold">tickets_sold</dt>
+                <dd class="col-sm-9">tickets_sold</dd>
+            </dl>
+            <h5>Description</h5>
+            <p class="card-text" id="description">
+            A giant lizard terrorizes a rural Texas community and a heroic teenager attempts to destroy the creature.</p>
+            <button class="btn btn-primary btn-outline-info" id="purchaseBtn">Purchase</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>
