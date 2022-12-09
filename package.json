@@ -1,0 +1,26 @@
+{
+  "name": "code_challenge_3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "js/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NyokabiKamau/phase1-codechallenge-week3.git"
+  },
+  "keywords": [
+    "js",
+    "html",
+    "css",
+    "bootstrap",
+    "film"
+  ],
+  "author": "Nyokabi Kamau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NyokabiKamau/phase1-codechallenge-week3/issues"
+  },
+  "homepage": "https://github.com/NyokabiKamau/phase1-codechallenge-week3#readme"
+}
