@@ -93,8 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const purchaseButton = document.createElement('button')
         purchaseButton.innerHTML = 'Purchase'
-        purchaseButton.addEventListener('click', function() {
-            let curentTicket = filmTicketsSold - 1
+        purchaseButton.addEventListener('click', () => {
+            alert(capacity)
         })
 
         // append body elements
@@ -155,20 +155,19 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(FILMAPI)
             .then((response) => response.json())
             .then((data) => {
-                const filmData = data
-                for (let item in filmData) {
-                    filmData[item]
-                const titles = filmData.title
-                const runtime = filmData.runtime
-                const capacity = filmData.capacity
-                const showtime = filmData.showtime
-                const ticketsSold = filmData.tickets_sold
-                const description = filmData.description
-                const poster = filmData.poster
+                data.forEach(film => {
+                const titles = film.title
+                const runtime = film.runtime
+                const capacity = film.capacity
+                const showtime = film.showtime
+                const ticketsSold = film.tickets_sold
+                const description = film.description
+                const poster = film.poster
                 const filmElement = createFilm(poster, titles, runtime, capacity, showtime, ticketsSold, description)
                 filmRow.appendChild(filmElement)
                 }
-            })
+            )
+        });
     }
 
 
