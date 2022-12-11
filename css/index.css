@@ -1,3 +1,9 @@
-.card-body{
-    background-color:azure;
+body{
+    background-color: darksalmon;
+}
+#purchase-btn{
+    background-color: gold;
+}
+#purchase-btn:hover{
+    cursor: pointer;
 }
