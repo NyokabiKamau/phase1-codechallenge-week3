@@ -46,7 +46,7 @@ let currentVisibleFilm = {}
     const searchRow = document.getElementById('search-result')
 
     // LINKS DATA
-    const filmLink = document.getElementById('film-link')
+    const menuLink = document.getElementById('menu-link')
     const homeLink = document.getElementById('home-link')
 
     // search form
@@ -54,7 +54,7 @@ let currentVisibleFilm = {}
     const searchInput = document.getElementById('search')
 
     // CLICK EVENTS FOR LINKS
-    filmLink.addEventListener('click', () => {
+    menuLink.addEventListener('click', () => {
         // hide film
         filmRow.style.display = "block"
         // hide search page
@@ -138,6 +138,7 @@ let currentVisibleFilm = {}
                 let currentAvailableTickets = Number(availableTicketsText)
                 if(currentAvailableTickets === 1) {
                     filmTicketsSold.innerText = `Available Tickets: SOLD OUT`
+                    purchaseButton.innerHTML = `SOLD OUT`
                 } else {
                     let remainingTickets = currentAvailableTickets -1 
                     filmTicketsSold.innerText = `Available Tickets: ${remainingTickets}`
@@ -164,14 +165,12 @@ let currentVisibleFilm = {}
         // append row to card
         cardDiv.appendChild(rowDiv)
 
-        // filmImg.addEventListener('click', revealfilm.bind(this, poster, title, runtime, capacity, showtime, tickets_sold, description))
-
         // return the cardDiv
         return cardDiv
     }
 
     // create search results
-    const createSearchResults = (title, poster, link) => {
+    const createSearchResults = (title, runtime, capacity, showtime, tickets_sold, description, poster, link) => {
         const rootDiv = document.createElement('div')
         rootDiv.classList.add('col-3', 'p-1')
 
@@ -186,15 +185,35 @@ let currentVisibleFilm = {}
         filmTitle.classList.add('p-2')
         filmTitle.innerText = title
 
-        const filmLink = document.createElement('a')
-        filmLink.classList.add('mt-1', 'mb-2', 'me-3', 'ms-3', 'btn', 'btn-warning')
-        filmLink.innerText = 'VISIT ...'
-        filmLink.href = link
-        filmLink.target = '_blank'
+        const filmRuntime = document.createElement('h6')
+        filmRuntime.classList.add('p-2')
+        filmRuntime.innerText = runtime
+
+        const filmCapacity = document.createElement('h6')
+        filmCapacity.classList.add('p-2')
+        filmCapacity.innerText = capacity
+
+        const filmShowtime = document.createElement('h6')
+        filmShowtime.classList.add('p-2')
+        filmShowtime.innerText = showtime
+
+        const filmTickets = document.createElement('h6')
+        filmTickets.classList.add('p-2')
+        filmTickets.innerText = tickets_sold
+
+        const filmDescription = document.createElement('h6')
+        filmDescription.classList.add('p-2')
+        filmDescription.innerText = description
+
+        const menuLink = document.createElement('a')
+        menuLink.classList.add('mt-1', 'mb-2', 'me-3', 'ms-3', 'btn', 'btn-warning')
+        menuLink.innerText = 'Purchase ...'
+        menuLink.href = link
+        menuLink.target = '_blank'
 
         cardDiv.appendChild(filmImg)
         cardDiv.appendChild(filmTitle)
-        cardDiv.appendChild(filmLink)
+        cardDiv.appendChild(menuLink)
 
         rootDiv.appendChild(cardDiv)
         return rootDiv
@@ -220,21 +239,24 @@ let currentVisibleFilm = {}
         });
     }
 
-
     // search data
     const searchFilm = (film) => {
         fetch(`${SEARCH}${film}`)
         .then((response) => response.json())
         .then((data) => {
-            data.forEach(el => {
+            // data.forEach(el => {
                 
-            })
-            const filmDataList = data
-            const searchResults = filmDataList.map(
+            // })
+            const searchResults = data.map(
                 filmData => {
                     const title = filmData.title
+                    const runtime = filmData.runtime
                     const poster = filmData.poster
-                    return createSearchResults(title, poster)
+                    const capacity = filmData.capacity
+                    const showtime = filmData.showtime
+                    const tickets = filmData.tickets_sold
+                    const description = filmData.description
+                    return createSearchResults(title, runtime, capacity, showtime, tickets, description, poster)
                 }
             )
                 // replace all children
@@ -249,3 +271,4 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // show filmimages
     loadFilm()
 })
+
