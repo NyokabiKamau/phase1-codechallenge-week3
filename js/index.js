@@ -1,11 +1,45 @@
 // URLS
-//1. Film
+// 1. Film
 const FILMAPI = 'http://localhost:3000/films'
 
-// 4. Search
+// 2. Search
 const SEARCH = 'http://localhost:3000/films'
 
-document.addEventListener('DOMContentLoaded', () => {
+let currentVisibleFilm = {}
+
+// function revealfilm(movie) {
+//     if(currentVisibleFilm !== undefined){
+//         let getPoster = document.getElementById('poster')
+//         getPoster.style.display = "none"
+//         let getTitle = document.getElementById('title')
+//         getTitle.style.display = "none"
+//         let getRuntime = document.getElementById('runtime')
+//         getRuntime.style.display = "none"
+//         let getShowtime = document.getElementById('showtime')
+//         getShowtime.style.display = "none"
+//         let getCapacity = document.getElementById('capacity')
+//         getCapacity.style.display = "none"
+//         let getTicketsSold = document.getElementById('tickets_sold')
+//         getTicketsSold.style.display = "none"
+//         let getDescription = document.getElementById('description')
+//         getDescription.style.display = "none"
+//     }
+//         let getPoster = document.getElementById('poster')
+//         getPoster.style.display = "none"
+//         let getTitle = document.getElementById('title')
+//         getTitle.style.display = "none"
+//         let getRuntime = document.getElementById('runtime')
+//         getRuntime.style.display = "none"
+//         let getShowtime = document.getElementById('showtime')
+//         getShowtime.style.display = "block"
+//         let getCapacity = document.getElementById('capacity')
+//         getCapacity.style.display = "block"
+//         let getTicketsSold = document.getElementById('tickets_sold')
+//         getTicketsSold.style.display = "block"
+//         let getDescription = document.getElementById('description')
+//         getDescription.style.display = "block"
+//         currentVisibleFilm = movie
+// }
 
     // ROWS DATA
     const filmRow = document.getElementById('showing-films')
@@ -22,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // CLICK EVENTS FOR LINKS
     filmLink.addEventListener('click', () => {
         // hide film
-        filmRow.style.display = "none"
+        filmRow.style.display = "block"
         // hide search page
         searchRow.style.display = "none"
         // show categories
@@ -32,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     homeLink.addEventListener('click', () => {
         // hide categories, search and countries
-        filmRow.style.display = "flex"
+        filmRow.style.display = 'block'
         searchRow.style.display = "none"
 
     })
@@ -93,8 +127,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const purchaseButton = document.createElement('button')
         purchaseButton.innerHTML = 'Purchase'
+        purchaseButton.setAttribute("id", 'purchase-btn')
         purchaseButton.addEventListener('click', () => {
-            alert(capacity)
+
+            let filmTicketsSoldContent = filmTicketsSold.textContent
+
+            if(filmTicketsSoldContent !== `Available Tickets: SOLD OUT`) {
+                let availableTicketsText = filmTicketsSoldContent.split(' ').pop()
+
+                let currentAvailableTickets = Number(availableTicketsText)
+                if(currentAvailableTickets === 1) {
+                    filmTicketsSold.innerText = `Available Tickets: SOLD OUT`
+                } else {
+                    let remainingTickets = currentAvailableTickets -1 
+                    filmTicketsSold.innerText = `Available Tickets: ${remainingTickets}`
+                }
+            }
         })
 
         // append body elements
@@ -115,6 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // append row to card
         cardDiv.appendChild(rowDiv)
+
+        // filmImg.addEventListener('click', revealfilm.bind(this, poster, title, runtime, capacity, showtime, tickets_sold, description))
 
         // return the cardDiv
         return cardDiv
@@ -138,7 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const filmLink = document.createElement('a')
         filmLink.classList.add('mt-1', 'mb-2', 'me-3', 'ms-3', 'btn', 'btn-warning')
-        filmLink.innerText = 'Purchase ...'
+        filmLink.innerText = 'VISIT ...'
         filmLink.href = link
         filmLink.target = '_blank'
 
@@ -174,23 +224,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // search data
     const searchFilm = (film) => {
         fetch(`${SEARCH}${film}`)
-            .then((response) => response.json())
-            .then((data) => {
-                const filmDataList = data[0]
-                const searchResults = filmDataList.map(
-                    filmData => {
-                        const title = filmData.title
-                        const poster = filmData.poster
-                        console.log(title)
-                        return createSearchResults(title, poster)
-                    }
-                )
+        .then((response) => response.json())
+        .then((data) => {
+            data.forEach(el => {
+                
+            })
+            const filmDataList = data
+            const searchResults = filmDataList.map(
+                filmData => {
+                    const title = filmData.title
+                    const poster = filmData.poster
+                    return createSearchResults(title, poster)
+                }
+            )
                 // replace all children
                 searchRow.replaceChildren(...searchResults)
             })
     }
 
-    // load data to UI
-    loadFilm()
 
+// wait for DOM to load to do stuff
+document.addEventListener('DOMContentLoaded', (event) => {
+    console.log(`Event loaded: ${event.type}`)
+    // show filmimages
+    loadFilm()
 })
