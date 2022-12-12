@@ -2,11 +2,15 @@
 
 # Table of Content
 1. [Description](#description)
-2. [Project Setup](#project-setup)
+2. [Project Guidelines](#project-guidelines)
+    - [Core Deliverables](#core-deliverables)
+    - [Bonus Deliverables](#bonus-deliverables)
+    - [Extra Bonus](#extra-bonus)
+3. [Project Setup](#project-setup)
     - [Installation](#installations)
     - [Access](#access)
-3. [Authors](#author)
-4. [License](#license)
+4. [Authors](#author)
+5. [License](#license)
 
 # Description
 For this assessment, you'll be working on Flatdango.
