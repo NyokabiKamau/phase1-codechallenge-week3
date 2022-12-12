@@ -146,6 +146,12 @@ let currentVisibleFilm = {}
             }
         })
 
+        // function loadSoldFilms (movies) {
+        //     let soldTicket = document.getElementById('purchase-btn')
+    
+        //     if(soldTicket === )
+        // }
+
         // append body elements
         bodyDiv.appendChild(filmTitle)
         bodyDiv.appendChild(filmRuntime)
@@ -165,7 +171,6 @@ let currentVisibleFilm = {}
         // append row to card
         cardDiv.appendChild(rowDiv)
 
-        // return the cardDiv
         return cardDiv
     }
 
@@ -264,11 +269,39 @@ let currentVisibleFilm = {}
             })
     }
 
-
 // wait for DOM to load to do stuff
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log(`Event loaded: ${event.type}`)
     // show filmimages
     loadFilm()
 })
+
+// adding new data into the DOM
+const addingFilmData = {
+        id: "16",
+        title: "Scrooge: A Christmas Carol",
+        runtime: "96",
+        capacity: "30",
+        showtime: "01:00PM",
+        tickets_sold: "13",
+        description: "A supernatural, time-travelling, musical adaptation of Charles Dickens's cult Christmas story.",
+        poster: "http://image.tmdb.org/t/p/w500//nOrnzHn9SCF6JTXfX02eSPyAAXL.jpg"
+}
+const configurationObject = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+        },
+        body:JSON.stringify(addingFilmData),
+    }
+fetch(FILMAPI, configurationObject)
+    .then(response => response.json()
+    .then(object => console.log(object))
+    .catch(error => {
+        alert("Bad things happen!")
+        console.log(error.message)
+    })
+)
+
 
