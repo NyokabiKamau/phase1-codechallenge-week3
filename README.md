@@ -1,6 +1,14 @@
-# phase1-codechallenge-week3
+# Phase1 Code Challenge Week2
 
-## Introduction
+# Table of Content
+1. [Description](#description)
+2. [Project Setup](#project-setup)
+    - [Installation](#installations)
+    - [Access](#access)
+3. [Authors](#author)
+4. [License](#license)
+
+# Description
 For this assessment, you'll be working on Flatdango.
 
 Flatiron Movie Theater is open for business! You will be building out an
@@ -143,3 +151,45 @@ deliverables!**
    Example Response:
    {}
    ```
+
+# Project Setup
+To access this project on you local computer, follow the steps below
+* Open your terminal
+* Clone this repository: 
+    - Run <code>git clone (https://github.com/NyokabiKamau/phase1-codechallenge-week3)</code>
+* Change directory:
+    - Run <code>cd code_challenge_3</code>
+
+### Installations:
+* Run <code>npm install</code> on the terminal
+* Run <code>npm init</code> to add the node modules and json package files
+* Run <code>json-server --watch db.json</code> on your terminal to start the backend json server
+   * (This enables the user to view the list of animals and access their content on the browser)
+
+   * or
+   
+   * <code>npm start</code>
+* Open a new terminal and navigate to code_challenge_3 
+* Open Visual Studio Code:
+    - Run <code>code .</code>
+* Click on the available files to view the codes used
+
+### Access
+To access the content on the browser:
+* click on this link (nyokabikamau.github.io/phase1-codechallenge-week3/#)
+
+   * or
+
+* Mac users: run <code>open index.html</code> on your terminal
+* WSL/Ubuntu users: run <code>explorer.exe index.html</code> on your terminal
+* or 
+* Visual Studio Code:
+    - Install <code>Live Server</code> extension
+    - Click on <code>Go live</code> on the bottom right corner
+
+# Author
+This project was contributed to by: 
+* [Nyokabi Kamau](https://github.com/NyokabiKamau/)
+
+# License
+* This project is licensed under ISC
