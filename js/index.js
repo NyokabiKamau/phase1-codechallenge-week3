@@ -2,48 +2,17 @@
 // 1. Film
 const FILMAPI = 'http://localhost:3000/films'
 
+const MENU = 'http://localhost:3000/films'
+
 // 2. Search
 const SEARCH = 'http://localhost:3000/films'
 
 let currentVisibleFilm = {}
 
-// function revealfilm(movie) {
-//     if(currentVisibleFilm !== undefined){
-//         let getPoster = document.getElementById('poster')
-//         getPoster.style.display = "none"
-//         let getTitle = document.getElementById('title')
-//         getTitle.style.display = "none"
-//         let getRuntime = document.getElementById('runtime')
-//         getRuntime.style.display = "none"
-//         let getShowtime = document.getElementById('showtime')
-//         getShowtime.style.display = "none"
-//         let getCapacity = document.getElementById('capacity')
-//         getCapacity.style.display = "none"
-//         let getTicketsSold = document.getElementById('tickets_sold')
-//         getTicketsSold.style.display = "none"
-//         let getDescription = document.getElementById('description')
-//         getDescription.style.display = "none"
-//     }
-//         let getPoster = document.getElementById('poster')
-//         getPoster.style.display = "none"
-//         let getTitle = document.getElementById('title')
-//         getTitle.style.display = "none"
-//         let getRuntime = document.getElementById('runtime')
-//         getRuntime.style.display = "none"
-//         let getShowtime = document.getElementById('showtime')
-//         getShowtime.style.display = "block"
-//         let getCapacity = document.getElementById('capacity')
-//         getCapacity.style.display = "block"
-//         let getTicketsSold = document.getElementById('tickets_sold')
-//         getTicketsSold.style.display = "block"
-//         let getDescription = document.getElementById('description')
-//         getDescription.style.display = "block"
-//         currentVisibleFilm = movie
-// }
-
     // ROWS DATA
     const filmRow = document.getElementById('showing-films')
     const searchRow = document.getElementById('search-result')
+    const filmMenu = document.getElementById('film-menu')
 
     // LINKS DATA
     const menuLink = document.getElementById('menu-link')
@@ -56,18 +25,21 @@ let currentVisibleFilm = {}
     // CLICK EVENTS FOR LINKS
     menuLink.addEventListener('click', () => {
         // hide film
-        filmRow.style.display = "block"
+        filmRow.style.display = "none"
         // hide search page
         searchRow.style.display = "none"
-        // show categories
-        filmRow.removeAttribute('hidden')
 
+        // show menu
+        filmMenu.removeAttribute('hidden')
+        filmMenu.style.display = "block"
     })
 
     homeLink.addEventListener('click', () => {
-        // hide categories, search and countries
-        filmRow.style.display = 'block'
+        // hide menu, search 
+        filmMenu.style.display = "none"
         searchRow.style.display = "none"
+        filmRow.style.display = 'block'
+        filmRow.removeAttribute('hidden')
 
     })
 
@@ -77,6 +49,7 @@ let currentVisibleFilm = {}
         const query = searchInput.value
         searchFilm(query)
         filmRow.style.display = "none"
+        filmMenu.style.display = "none"
         searchRow.style.display = "flex"
         searchRow.removeAttribute('hidden')
     })
@@ -137,20 +110,14 @@ let currentVisibleFilm = {}
 
                 let currentAvailableTickets = Number(availableTicketsText)
                 if(currentAvailableTickets === 1) {
-                    filmTicketsSold.innerText = `Available Tickets: SOLD OUT`
-                    purchaseButton.innerHTML = `SOLD OUT`
+                    filmTicketsSold.innerText = `Available Tickets: Sold Out`
+                    purchaseButton.innerHTML = `Sold Out`
                 } else {
                     let remainingTickets = currentAvailableTickets -1 
                     filmTicketsSold.innerText = `Available Tickets: ${remainingTickets}`
                 }
             }
         })
-
-        // function loadSoldFilms (movies) {
-        //     let soldTicket = document.getElementById('purchase-btn')
-    
-        //     if(soldTicket === )
-        // }
 
         // append body elements
         bodyDiv.appendChild(filmTitle)
@@ -224,6 +191,21 @@ let currentVisibleFilm = {}
         return rootDiv
     }
 
+    const createFilmMenu = (menu) => {
+        const rootDiv = document.createElement('div')
+        rootDiv.classList.add('col-3', 'p-2')
+
+        const filmData = document.createElement('button')
+        filmData.classList.add('col-12', 'text-bg-success', 'p-1')
+        filmData.innerText = menu
+        filmData.addEventListener('click', () => {
+            alert('hello')
+        })
+
+        rootDiv.appendChild(filmData)
+        return rootDiv
+    }
+
     // load film
     const loadFilm = () => {
         fetch(FILMAPI)
@@ -244,14 +226,23 @@ let currentVisibleFilm = {}
         });
     }
 
+    // load countries
+    const loadMenu = () => {
+        fetch(MENU)
+            .then((response) => response.json())
+            .then((data) => {
+                const filmElems = data.map(
+                    menuData =>  createFilmMenu(menuData.title)
+                )
+                filmMenu.append(...filmElems)
+            })
+    }
+
     // search data
     const searchFilm = (film) => {
         fetch(`${SEARCH}${film}`)
         .then((response) => response.json())
         .then((data) => {
-            // data.forEach(el => {
-                
-            // })
             const searchResults = data.map(
                 filmData => {
                     const title = filmData.title
@@ -274,6 +265,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     console.log(`Event loaded: ${event.type}`)
     // show filmimages
     loadFilm()
+    loadMenu()
+    
 })
 
 // adding new data into the DOM
@@ -297,11 +290,5 @@ const configurationObject = {
     }
 fetch(FILMAPI, configurationObject)
     .then(response => response.json()
-    .then(object => console.log(object))
-    .catch(error => {
-        alert("Bad things happen!")
-        console.log(error.message)
-    })
-)
-
-
+    .then(object => document.innerHTML = object["id"]))
+ 
