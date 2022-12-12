@@ -7,3 +7,11 @@ body{
 #purchase-btn:hover{
     cursor: pointer;
 }
+#home-link{
+    font-size:xx-large;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#menu-link{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
