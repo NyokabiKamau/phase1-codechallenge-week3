@@ -168,7 +168,7 @@ To access this project on you local computer, follow the steps below
 * Run <code>npm install</code> on the terminal
 * Run <code>npm init</code> to add the node modules and json package files
 * Run <code>json-server --watch db.json</code> on your terminal to start the backend json server
-   * (This enables the user to view the list of animals and access their content on the browser)
+   * (This enables the user to view the list of films and access their content on the browser and buy tickets)
 
    * or
    
@@ -180,7 +180,7 @@ To access this project on you local computer, follow the steps below
 
 ### Access
 To access the content on the browser:
-* click on this link (nyokabikamau.github.io/phase1-codechallenge-week3/#)
+* click on this link (https://nyokabikamau.github.io/phase1-codechallenge-week3/#)
 
    * or
 
