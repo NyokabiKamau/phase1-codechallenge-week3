@@ -1,4 +1,4 @@
-# Phase1 Code Challenge Week2
+# Phase1 Code Challenge Week3
 
 # Table of Content
 1. [Description](#description)
