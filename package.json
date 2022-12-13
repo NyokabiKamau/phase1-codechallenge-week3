@@ -4,7 +4,7 @@
   "description": "",
   "main": "js/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "json-server --watch ./db.json"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/NyokabiKamau/phase1-codechallenge-week3/issues"
   },
-  "homepage": "https://github.com/NyokabiKamau/phase1-codechallenge-week3#readme"
+  "homepage": "https://github.com/NyokabiKamau/phase1-codechallenge-week3#readme",
+  "dependencies": {
+    "json-server": "^0.17.1"
+  }
 }

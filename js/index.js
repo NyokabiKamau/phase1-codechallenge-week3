@@ -11,26 +11,13 @@ const SEARCH = 'http://localhost:3000/films/'
     const filmRow = document.getElementById('showing-films')
     const searchRow = document.getElementById('search-result')
     const filmMenu = document.getElementById('film-menu')
-
-    // LINKS DATA
-    // const menuLink = document.getElementById('menu-link')
+    const searchInput = document.getElementById('search')
+ 
     const homeLink = document.getElementById('home-link')
 
     // search form
     const searchForm = document.getElementById('search-form')
-    const searchInput = document.getElementById('search')
-
-    // CLICK EVENTS FOR LINKS
-    // menuLink.addEventListener('click', () => {
-    //     // hide film
-    //     filmRow.style.display = "none"
-    //     // hide search page
-    //     searchRow.style.display = "none"
-
-    //     // show menu
-    //     filmMenu.removeAttribute('hidden')
-    //     filmMenu.style.display = "block"
-    // })
+    // const searchInput = document.getElementById('search')
 
     homeLink.addEventListener('click', () => {
         // hide menu, search 
@@ -57,6 +44,7 @@ const SEARCH = 'http://localhost:3000/films/'
 
         const cardDiv = document.createElement('div')
         cardDiv.classList.add('card', 'col-12', 'px-0', 'mb-3')
+        cardDiv.setAttribute('id', 'filmCardDiv')
 
         const rowDiv = document.createElement('div')
         rowDiv.classList.add('row')
@@ -75,6 +63,7 @@ const SEARCH = 'http://localhost:3000/films/'
         const filmTitle = document.createElement('h2')
         filmTitle.classList.add('card-title')
         filmTitle.innerText = title
+        filmTitle.setAttribute('id', 'filmTitle')
 
         const filmRuntime = document.createElement('h6')
         filmRuntime.classList.add('card-text')
@@ -94,7 +83,8 @@ const SEARCH = 'http://localhost:3000/films/'
 
         const filmDescription = document.createElement('p')
         filmDescription.classList.add('card-text')
-        filmDescription.innerText = description
+        filmDescription.innerText = `"${description}"`
+        filmDescription.setAttribute('id', 'filmDescription')
 
         const purchaseButton = document.createElement('button')
         purchaseButton.innerHTML = 'Purchase'

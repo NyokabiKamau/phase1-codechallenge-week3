@@ -150,6 +150,16 @@
       "tickets_sold": 33,
       "description": "Delinquent teen-agers ingest a substance and grow thirty feet tall, then proceed to take over a small town.",
       "poster": "https://www.gstatic.com/tv/thumb/v22vodart/37991/p37991_v_v8_aa.jpg"
+    },
+    {
+      "id": "16",
+      "title": "Scrooge: A Christmas Carol",
+      "runtime": "96",
+      "capacity": "30",
+      "showtime": "01:00PM",
+      "tickets_sold": "13",
+      "description": "A supernatural, time-travelling, musical adaptation of Charles Dickens's cult Christmas story.",
+      "poster": "http://image.tmdb.org/t/p/w500//nOrnzHn9SCF6JTXfX02eSPyAAXL.jpg"
     }
   ]
 }
