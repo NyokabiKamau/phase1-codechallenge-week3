@@ -13,7 +13,7 @@ const SEARCH = 'http://localhost:3000/films/'
     const filmMenu = document.getElementById('film-menu')
 
     // LINKS DATA
-    const menuLink = document.getElementById('menu-link')
+    // const menuLink = document.getElementById('menu-link')
     const homeLink = document.getElementById('home-link')
 
     // search form
@@ -21,16 +21,16 @@ const SEARCH = 'http://localhost:3000/films/'
     const searchInput = document.getElementById('search')
 
     // CLICK EVENTS FOR LINKS
-    menuLink.addEventListener('click', () => {
-        // hide film
-        filmRow.style.display = "none"
-        // hide search page
-        searchRow.style.display = "none"
+    // menuLink.addEventListener('click', () => {
+    //     // hide film
+    //     filmRow.style.display = "none"
+    //     // hide search page
+    //     searchRow.style.display = "none"
 
-        // show menu
-        filmMenu.removeAttribute('hidden')
-        filmMenu.style.display = "block"
-    })
+    //     // show menu
+    //     filmMenu.removeAttribute('hidden')
+    //     filmMenu.style.display = "block"
+    // })
 
     homeLink.addEventListener('click', () => {
         // hide menu, search 
@@ -103,7 +103,7 @@ const SEARCH = 'http://localhost:3000/films/'
 
             let filmTicketsSoldContent = filmTicketsSold.textContent
 
-            if(filmTicketsSoldContent !== `Available Tickets: SOLD OUT`) {
+            if(filmTicketsSoldContent !== `Available Tickets: Sold Out`) {
                 let availableTicketsText = filmTicketsSoldContent.split(' ').pop()
 
                 let currentAvailableTickets = Number(availableTicketsText)
@@ -210,11 +210,12 @@ const SEARCH = 'http://localhost:3000/films/'
 
     function createFilmMenu(menu) {
         const rootDiv = document.createElement('div')
-        rootDiv.classList.add('col-3', 'p-2')
+        rootDiv.classList.add('col-12', 'p-2')
 
         const filmData = document.createElement('button')
-        filmData.classList.add('col-12', 'text-bg-success', 'p-1')
+        filmData.classList.add('col-12', 'p-3')
         filmData.innerText = menu.title
+        filmData.setAttribute('id', 'filmMenuBtn')
         filmData.addEventListener('click', () => {
             loadOneFilm(menu)
             console.log(menu)
@@ -291,7 +292,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     loadMenu()
     
 })
-
 
 
 // adding new data into the DOM
