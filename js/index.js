@@ -5,9 +5,7 @@ const FILMAPI = 'http://localhost:3000/films'
 const MENU = 'http://localhost:3000/films'
 
 // 2. Search
-const SEARCH = 'http://localhost:3000/films'
-
-let currentVisibleFilm = {}
+const SEARCH = 'http://localhost:3000/films/'
 
     // ROWS DATA
     const filmRow = document.getElementById('showing-films')
@@ -36,7 +34,7 @@ let currentVisibleFilm = {}
 
     homeLink.addEventListener('click', () => {
         // hide menu, search 
-        filmMenu.style.display = "none"
+        filmMenu.style.display = "block"
         searchRow.style.display = "none"
         filmRow.style.display = 'block'
         filmRow.removeAttribute('hidden')
@@ -55,7 +53,7 @@ let currentVisibleFilm = {}
     })
 
     // create random film element
-    const createFilm = (poster, title, runtime, capacity, showtime, tickets_sold, description) => {
+    function createFilm (poster, title, runtime, capacity, showtime, tickets_sold, description){
 
         const cardDiv = document.createElement('div')
         cardDiv.classList.add('card', 'col-12', 'px-0', 'mb-3')
@@ -80,7 +78,7 @@ let currentVisibleFilm = {}
 
         const filmRuntime = document.createElement('h6')
         filmRuntime.classList.add('card-text')
-        filmRuntime.innerText = `Runtime: ${runtime}`
+        filmRuntime.innerText = `Runtime: ${runtime} minutes`
 
         const filmCapacity = document.createElement('h6')
         filmCapacity.classList.add('card-text')
@@ -142,7 +140,7 @@ let currentVisibleFilm = {}
     }
 
     // create search results
-    const createSearchResults = (title, runtime, capacity, showtime, tickets_sold, description, poster, link) => {
+    function createSearchResults (title, runtime, capacity, showtime, tickets_sold, description, poster, link) {
         const rootDiv = document.createElement('div')
         rootDiv.classList.add('col-3', 'p-1')
 
@@ -177,29 +175,49 @@ let currentVisibleFilm = {}
         filmDescription.classList.add('p-2')
         filmDescription.innerText = description
 
-        const menuLink = document.createElement('a')
-        menuLink.classList.add('mt-1', 'mb-2', 'me-3', 'ms-3', 'btn', 'btn-warning')
-        menuLink.innerText = 'Purchase ...'
-        menuLink.href = link
-        menuLink.target = '_blank'
+        const searchLink = document.createElement('a')
+        searchLink.classList.add('mt-1', 'mb-2', 'me-3', 'ms-3', 'btn', 'btn-warning')
+        searchLink.innerText = 'Purchase ...'
+        searchLink.href = link
+        searchLink.target = '_blank'
 
         cardDiv.appendChild(filmImg)
         cardDiv.appendChild(filmTitle)
-        cardDiv.appendChild(menuLink)
+        cardDiv.appendChild(searchLink)
 
         rootDiv.appendChild(cardDiv)
         return rootDiv
     }
+    function loadOneFilm (film) {
+        console.log(film)
+         // hide menu, search 
+         filmMenu.style.display = "block"
+         searchRow.style.display = "none"
+         filmRow.style.display = 'block'
+         filmMenu.removeAttribute('hidden')
+         filmRow.removeAttribute('hidden')
+            const titles = film.title
+            const runtime = film.runtime
+            const capacity = film.capacity
+            const showtime = film.showtime
+            const ticketsSold = film.tickets_sold
+            const description = film.description
+            const poster = film.poster
+            const filmElement = createFilm(poster, titles, runtime, capacity, showtime, ticketsSold, description)
+            filmRow.innerHTML = ""
+            filmRow.appendChild(filmElement)
+        }
 
-    const createFilmMenu = (menu) => {
+    function createFilmMenu(menu) {
         const rootDiv = document.createElement('div')
         rootDiv.classList.add('col-3', 'p-2')
 
         const filmData = document.createElement('button')
         filmData.classList.add('col-12', 'text-bg-success', 'p-1')
-        filmData.innerText = menu
+        filmData.innerText = menu.title
         filmData.addEventListener('click', () => {
-            alert('hello')
+            loadOneFilm(menu)
+            console.log(menu)
         })
 
         rootDiv.appendChild(filmData)
@@ -207,7 +225,7 @@ let currentVisibleFilm = {}
     }
 
     // load film
-    const loadFilm = () => {
+    function loadFilm() {
         fetch(FILMAPI)
             .then((response) => response.json())
             .then((data) => {
@@ -227,19 +245,19 @@ let currentVisibleFilm = {}
     }
 
     // load countries
-    const loadMenu = () => {
+    function loadMenu () {
         fetch(MENU)
             .then((response) => response.json())
             .then((data) => {
                 const filmElems = data.map(
-                    menuData =>  createFilmMenu(menuData.title)
+                    menuData =>  createFilmMenu(menuData)
                 )
                 filmMenu.append(...filmElems)
             })
     }
 
     // search data
-    const searchFilm = (film) => {
+    function searchFilm (film){
         fetch(`${SEARCH}${film}`)
         .then((response) => response.json())
         .then((data) => {
@@ -264,10 +282,17 @@ let currentVisibleFilm = {}
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log(`Event loaded: ${event.type}`)
     // show filmimages
-    loadFilm()
+    fetch(FILMAPI)
+    .then(response => response.json())
+    .then(data => {
+        loadOneFilm(data[0])
+    })
+
     loadMenu()
     
 })
+
+
 
 // adding new data into the DOM
 const addingFilmData = {
@@ -288,7 +313,6 @@ const configurationObject = {
         },
         body:JSON.stringify(addingFilmData),
     }
-fetch(FILMAPI, configurationObject)
-    .then(response => response.json()
-    .then(object => document.innerHTML = object["id"]))
- 
+// fetch(FILMAPI, configurationObject)
+//     .then(response => response.json())
+//     .then(object => document.innerHTML = object["id"])

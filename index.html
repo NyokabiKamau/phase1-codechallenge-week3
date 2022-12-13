@@ -12,39 +12,31 @@
             <div class="container-fluid" style="background-color: #1d0416;">
                 <ul class="navbar-nav">
                     <li>
-                        <a class="navbar-brand nav-item text-light" id="home-link">Arcade Movie Thearte</a>
+                        <a class="navbar-brand nav-item text-light d-flex" id="home-link">Arcade Movie Thearte</a>
                     </li>
                     <li class="nav-item">
-                        <a class="navbar-link text-light nav-brand" href="#" role="button" id="menu-link">Menu</a>
+                        <a class="btn btn-sm btn-outline-secondary text-light nav-brand mt-3 mb-0 ms-0" href="#" role="button" id="menu-link">Menu</a>
                         <ul id="films">
-                            <li href="#"></li>
-                            </li href="#"></li>
-                            <li href="#"></li>
                             <li></li>
-                            
                         </ul>
                     </li>
                 </ul>
 
-                <form class="d-flex" id="search-form">
+                <form class="d-flex mt-0" id="search-form">
                     <input class="form-control" type="text" placeholder="Search" id="search"/>
                     <button class="btn btn-outline-info ms-1"  id="searchBtn">SEARCH</button>
                 </form>
             </div>
         </nav>
 
-        <div class="container mt-5" id="main-container" >
-                <div  id="showing-films"></div>
-                <div class="row mt-3 mb-3" id="film-menu" hidden>
-                    <h3>FILMS</h3>
-                </div>
+        <div class="container d-flex flex-row mt-5" id="main-container" >
+            <div class="row d-flex flex-row">
+                <div class="col" id="film-menu" hidden><h3>FILMS</h3></div>
 
-                <div class="row mt-3 mb-3" id="search-result" hidden>
-                    <h3>SEARCH RESULTS</h3>
-                </div>
-            </nav>
+                <div class="col" id="showing-films"></div>
 
-
+                <div class="row mt-3 mb-3" id="search-result" hidden><h3>SEARCH RESULTS</h3></div>
+            </div>
         </div>
 
         <script type="text/javascript" src="js/bootstrap.js"></script>
