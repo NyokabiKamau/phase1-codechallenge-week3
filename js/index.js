@@ -72,7 +72,7 @@ function createFilm (poster, title, runtime, capacity, showtime, tickets_sold, d
 
     const filmTicketsSold = document.createElement('h6')
     filmTicketsSold.classList.add('card-text')
-    filmTicketsSold.innerText = `Availabe Tickets: ${tickets_sold}`
+    filmTicketsSold.innerText = `Availabe Tickets: ${capacity - tickets_sold}`
 
     const filmDescription = document.createElement('p')
     filmDescription.classList.add('card-text')
